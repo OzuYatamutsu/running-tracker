@@ -9,3 +9,15 @@ running-tracker is written in Python 3. To install requirements to start it:
 ```
 pip install -r requirements.txt
 ```
+
+To run:
+
+*Bash*
+```
+FLASK_APP=app.py python -m flask run
+```
+
+*PowerShell*
+```
+$env:FLASK_APP='app.py'; python -m flask run
+```
