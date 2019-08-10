@@ -30,3 +30,10 @@ CREATE TABLE activity (
         ON DELETE RESTRICT
 );
 
+CREATE TABLE vo2 (
+    -- Calculated against a constant 1.5 mile run.
+    timestamp DATETIME PRIMARY KEY NOT NULL DEFAULT (DATETIME('now')),
+    duration_min UNSIGNED INTEGER NOT NULL,
+    duration_sec UNSIGNED INTEGER NOT NULL,
+    notes TEXT(1024) NOT NULL DEFAULT ''
+);
