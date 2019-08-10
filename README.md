@@ -1,4 +1,5 @@
 # running-tracker
+[![Build Status](https://travis-ci.org/OzuYatamutsu/running-tracker.svg?branch=master)](https://travis-ci.org/OzuYatamutsu/running-tracker)
 Tracks improvements to running pace, and the contextual metrics around it.
 
 This project is currently a work-in-progress.
