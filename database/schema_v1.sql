@@ -1,5 +1,5 @@
 CREATE TABLE vitals (
-    timestamp DATETIME PRIMARY KEY NOT NULL,
+    timestamp DATETIME PRIMARY KEY NOT NULL (DATETIME('now')),
     weight_lb NUMERIC NOT NULL,
     bp_systolic NUMERIC NOT NULL,
     bp_diastolic NUMERIC NOT NULL,
@@ -17,7 +17,7 @@ INSERT INTO activity_types (name) VALUES
     ('walk');
 
 CREATE TABLE activity (
-    timestamp DATETIME PRIMARY KEY NOT NULL,
+    timestamp DATETIME PRIMARY KEY NOT NULL (DATETIME('now')),
     activity_type TEXT NOT NULL,
     distance_mi NUMERIC NOT NULL,
     duration_min UNSIGNED INTEGER NOT NULL,
