@@ -6,4 +6,3 @@ class TestImports(TestCase):
         from runningtracker import api  # noqa
         from runningtracker import frontend  # noqa
         assert True
-
