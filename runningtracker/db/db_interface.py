@@ -24,7 +24,7 @@ def commit(datapoint: Datapoint) -> None:
         )
 
 
-def get_last_n_datapoints(data_type: Type[Datapoint], n=1)-> List[Datapoint]:
+def get_last_n_datapoints(data_type: Type[Datapoint], n=1) -> List[Datapoint]:
     """
     Returns the last n most recent datapoints of the given type.
     """
