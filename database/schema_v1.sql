@@ -24,10 +24,6 @@ CREATE TABLE activity (
     duration_sec UNSIGNED INTEGER NOT NULL,
     temp_f NUMERIC,
     notes TEXT(1024) NOT NULL DEFAULT ''
-
-    FOREIGN KEY (activity_type) REFERENCES activity_types(name)
-        ON UPDATE RESTRICT,
-        ON DELETE RESTRICT
 );
 
 CREATE TABLE vo2 (
