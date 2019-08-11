@@ -20,7 +20,7 @@ class ActivityDatapoint(Datapoint):
 
     COMMIT_SQL = (
         "INSERT INTO activity (timestamp, activity_type, distance_mi, "
-        "distance_min, distance_sec, temp_f, notes) VALUES "
+        "duration_min, duration_sec, temp_f, notes) VALUES "
         "(?, ?, ?, ?, ?, ?, ?)"
     )
 

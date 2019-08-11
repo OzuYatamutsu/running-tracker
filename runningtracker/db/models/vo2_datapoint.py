@@ -17,7 +17,7 @@ class Vo2Datapoint(Datapoint):
 
     COMMIT_SQL = (
         "INSERT INTO vo2 (timestamp, duration_min, duration_sec, "
-        "notes) VALUES (?, ?, ?, ?, ?, ?)"
+        "notes) VALUES (?, ?, ?, ?)"
     )
 
     def to_sql_params(self) -> tuple:
