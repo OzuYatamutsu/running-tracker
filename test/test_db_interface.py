@@ -78,7 +78,7 @@ class TestDbInterface(TestCase):
 
         for datapoint in test_datapoints:
             commit(datapoint)
-        
+
         result = get_last_n_datapoints(
             datapoint_type=VitalsDatapoint,
             n=5
