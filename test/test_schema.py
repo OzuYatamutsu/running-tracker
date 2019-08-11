@@ -1,4 +1,4 @@
-from runningtracker.db_interface import _init_db, _get_db, DATABASE_NAME
+from runningtracker.db.db_interface import _init_db, _get_db, DATABASE_NAME
 from unittest import TestCase
 from sqlite3 import connect
 from pathlib import Path
