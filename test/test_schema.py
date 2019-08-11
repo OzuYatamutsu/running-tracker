@@ -15,7 +15,7 @@ class TestSchema(TestCase):
                 str(ddl_file).endswith('.sql')
             )
         ]
-        self.test_database_name = 'UNIT_TEST.db'
+        self.test_database_name = ':memory:'
 
     def test_all_schemas_are_valid(self):
         ddl = ""
@@ -24,7 +24,6 @@ class TestSchema(TestCase):
                 ddl = f.read()
 
             connect(self.test_database_name).cursor().executescript(ddl)
-            unlink(self.test_database_name)
             assert True
         assert True
 
@@ -32,7 +31,6 @@ class TestSchema(TestCase):
         try:
             _init_db(connect(self.test_database_name))
         except Exception:
-            unlink(self.test_database_name)
             raise
 
     def test_can_get_valid_db_object_against_latest_schema_version(self):
@@ -46,7 +44,6 @@ class TestSchema(TestCase):
 
     def tearDown(self) -> None:
         try:
-            unlink(self.test_database_name)
             unlink(DATABASE_NAME)
         except:  # noqa
             pass

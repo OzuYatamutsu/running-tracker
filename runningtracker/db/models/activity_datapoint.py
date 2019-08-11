@@ -31,7 +31,7 @@ class ActivityDatapoint(Datapoint):
         """
 
         return (
-            self.timestamp, self.activity_type, self.distance_mi,
+            self.timestamp, self.activity_type.value, self.distance_mi,
             self.duration_min, self.duration_sec, self.temp_f,
             self.notes
         )
