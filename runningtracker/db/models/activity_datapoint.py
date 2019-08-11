@@ -18,8 +18,10 @@ class ActivityDatapoint(Datapoint):
     temp_f: float
     notes: str
 
+    TABLE_NAME = "activity"
+
     COMMIT_SQL = (
-        "INSERT INTO activity (timestamp, activity_type, distance_mi, "
+        f"INSERT INTO {TABLE_NAME} (timestamp, activity_type, distance_mi, "
         "duration_min, duration_sec, temp_f, notes) VALUES "
         "(?, ?, ?, ?, ?, ?, ?)"
     )

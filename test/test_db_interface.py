@@ -1,5 +1,7 @@
+from runningtracker.db.db_interface import (
+    commit, _get_db, DATABASE_NAME, get_last_n_datapoints
+)
 from runningtracker.db.models.activity_datapoint import ActivityDatapoint
-from runningtracker.db.db_interface import commit, _get_db, DATABASE_NAME
 from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
 from runningtracker.db.models.vo2_datapoint import Vo2Datapoint
 from runningtracker.db.models.activity_type import ActivityType
@@ -61,6 +63,29 @@ class TestDbInterface(TestCase):
         assert type(Vo2Datapoint(
             **cursor.fetchone()
         )) is Vo2Datapoint
+
+    def test_get_last_n_datapoints(self):
+        test_datapoints = [
+            VitalsDatapoint(
+                timestamp=datetime.now(),
+                weight_lb=0.0,
+                bp_systolic=0.0,
+                bp_diastolic=0.0,
+                heart_bpm=0,
+                notes=f"{n}"
+            ) for n in range(5)
+        ]
+
+        for datapoint in test_datapoints:
+            commit(datapoint)
+        
+        result = get_last_n_datapoints(
+            datapoint_type=VitalsDatapoint,
+            n=5
+        )
+
+        assert len(result) == 5
+        assert all([type(item) is VitalsDatapoint for item in result])
 
     def tearDown(self) -> None:
         try:

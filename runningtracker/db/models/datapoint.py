@@ -8,6 +8,15 @@ class Datapoint(metaclass=ABCMeta):
 
     @property
     @abstractmethod
+    def TABLE_NAME(self):
+        """
+        Which SQL table does this datapoint belong to?
+        """
+
+        raise NotImplementedError
+
+    @property
+    @abstractmethod
     def COMMIT_SQL(self):
         """
         What SQL statement should we run to commit this

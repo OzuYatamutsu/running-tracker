@@ -1,5 +1,6 @@
 from runningtracker.db.models.datapoint import Datapoint
 from sqlite3 import connect, Connection
+from typing import Type, List
 from pathlib import Path
 
 
@@ -21,6 +22,26 @@ def commit(datapoint: Datapoint) -> None:
         db.cursor().execute(
             datapoint.COMMIT_SQL, datapoint.to_sql_params()
         )
+
+
+def get_last_n_datapoints(datapoint_type: Type[Datapoint],
+                          n=1)-> List[Datapoint]:
+    """
+    Returns the last n most recent datapoints of the given type.
+    """
+
+    with _get_db() as db:
+        cursor = db.cursor()
+
+        cursor.execute(
+            f"SELECT * FROM {datapoint_type.TABLE_NAME} "
+            "ORDER BY timestamp LIMIT ?", (n,)
+        )
+
+        return [
+            datapoint_type(**row)
+            for row in cursor.fetchall()
+        ]
 
 
 def _init_db(conn: Connection) -> None:

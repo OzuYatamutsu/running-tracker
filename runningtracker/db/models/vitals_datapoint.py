@@ -17,8 +17,10 @@ class VitalsDatapoint(Datapoint):
     heart_bpm: int
     notes: str
 
+    TABLE_NAME = "vitals"
+
     COMMIT_SQL = (
-        "INSERT INTO vitals (timestamp, weight_lb, bp_systolic, "
+        f"INSERT INTO {TABLE_NAME} (timestamp, weight_lb, bp_systolic, "
         "bp_diastolic, heart_bpm, notes) VALUES "
         "(?, ?, ?, ?, ?, ?)"
     )

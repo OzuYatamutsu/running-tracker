@@ -15,8 +15,10 @@ class Vo2Datapoint(Datapoint):
     duration_sec: int
     notes: str
 
+    TABLE_NAME = "vo2"
+
     COMMIT_SQL = (
-        "INSERT INTO vo2 (timestamp, duration_min, duration_sec, "
+        f"INSERT INTO {TABLE_NAME} (timestamp, duration_min, duration_sec, "
         "notes) VALUES (?, ?, ?, ?)"
     )
 
