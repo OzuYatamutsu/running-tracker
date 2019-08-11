@@ -10,6 +10,10 @@ DATABASE_NAME = 'runningtracker.db'
 
 
 def _init_db(conn: Connection) -> None:
+    """
+    Runs the schema DDL to initialize the database.
+    """
+
     ddl = ""
     with open(SCHEMA_LOCATION) as f:
         ddl = f.read()
@@ -18,6 +22,11 @@ def _init_db(conn: Connection) -> None:
 
 
 def _row_factory(cursor, row) -> dict:
+    """
+    (Passed into SQLite to return a resultset
+    as a list of dicts)
+    """
+
     result = {}
     for index, column in enumerate(cursor.description):
         result[column[0]] = row[index]
@@ -25,6 +34,10 @@ def _row_factory(cursor, row) -> dict:
 
 
 def _get_db() -> Connection:
+    """
+    Returns a db connection object.
+    """
+
     db_needs_initing = not Path(DATABASE_NAME).exists()
     conn = connect(DATABASE_NAME)
     conn.row_factory = _row_factory

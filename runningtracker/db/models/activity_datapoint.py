@@ -5,6 +5,10 @@ from datetime import datetime
 
 @dataclass
 class ActivityDatapoint:
+    """
+    Describes an instance of physical activity.
+    """
+
     timestamp: datetime
     activity_type: ActivityType
     distance_mi: float
