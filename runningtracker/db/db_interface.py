@@ -1,5 +1,8 @@
+from runningtracker.db.models.datapoint import Datapoint
 from sqlite3 import connect, Connection
 from pathlib import Path
+
+
 SCHEMA_VERSION = 'v1'
 SCHEMA_LOCATION = str(
     Path('.').parent.parent.joinpath(
@@ -7,6 +10,17 @@ SCHEMA_LOCATION = str(
     )
 )
 DATABASE_NAME = 'runningtracker.db'
+
+
+def commit(datapoint: Datapoint) -> None:
+    """
+    Commits a datapoint to the database.
+    """
+
+    with _get_db() as db:
+        db.cursor().execute(
+            datapoint.COMMIT_SQL, datapoint.to_sql_params()
+        )
 
 
 def _init_db(conn: Connection) -> None:
