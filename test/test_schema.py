@@ -31,7 +31,7 @@ class TestSchema(TestCase):
     def test_can_init_latest_schema_version(self):
         try:
             _init_db(connect(self.test_database_name))
-        except Exception as e:
+        except Exception:
             unlink(self.test_database_name)
             raise
 
@@ -40,7 +40,7 @@ class TestSchema(TestCase):
             db = _get_db()
             assert not not db
             assert not not db.cursor().execute("SELECT 'Hello, world'")
-        except Exception as e:
+        except Exception:
             unlink(DATABASE_NAME)
             raise
 
