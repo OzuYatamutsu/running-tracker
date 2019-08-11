@@ -9,7 +9,7 @@ class TestSchema(TestCase):
     def setUp(self) -> None:
         self.db_schemas = [
             str(ddl_file.absolute())
-            for ddl_file in Path('.').parent.joinpath('database')
+            for ddl_file in Path('.').parent.joinpath('database').iterdir()
             if (
                 str(ddl_file).startswith('schema') and
                 str(ddl_file).endswith('.sql')
@@ -39,7 +39,7 @@ class TestSchema(TestCase):
         try:
             db = _get_db()
             assert not not db
-            assert not not db.query("SELECT 'Hello, world'")
+            assert not not db.cursor().execute("SELECT 'Hello, world'")
         except Exception as e:
             unlink(DATABASE_NAME)
             raise
