@@ -24,8 +24,7 @@ def commit(datapoint: Datapoint) -> None:
         )
 
 
-def get_last_n_datapoints(datapoint_type: Type[Datapoint],
-                          n=1)-> List[Datapoint]:
+def get_last_n_datapoints(data_type: Type[Datapoint], n=1)-> List[Datapoint]:
     """
     Returns the last n most recent datapoints of the given type.
     """
@@ -34,12 +33,12 @@ def get_last_n_datapoints(datapoint_type: Type[Datapoint],
         cursor = db.cursor()
 
         cursor.execute(
-            f"SELECT * FROM {datapoint_type.TABLE_NAME} "
+            f"SELECT * FROM {data_type.TABLE_NAME} "
             "ORDER BY timestamp LIMIT ?", (n,)
         )
 
         return [
-            datapoint_type(**row)
+            data_type(**row)
             for row in cursor.fetchall()
         ]
 
