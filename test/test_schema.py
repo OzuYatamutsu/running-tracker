@@ -5,11 +5,15 @@ from pathlib import Path
 from os import unlink
 
 
-def TestSchema(TestCase):
-    def setUp(self):
+class TestSchema(TestCase):
+    def setUp(self) -> None:
         self.db_schemas = [
-            str(ddl_file.absolute()) for ddl_file in Path('.').parent.joinpath('database')
-            if str(ddl_file).startswith('schema') and str(ddl_file).endswith('.sql')
+            str(ddl_file.absolute())
+            for ddl_file in Path('.').parent.joinpath('database')
+            if (
+                str(ddl_file).startswith('schema') and
+                str(ddl_file).endswith('.sql')
+            )
         ]
         self.test_database_name = 'UNIT_TEST.db'
 
@@ -40,7 +44,7 @@ def TestSchema(TestCase):
             unlink(DATABASE_NAME)
             raise
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         try:
             unlink(self.test_database_name)
             unlink(DATABASE_NAME)
