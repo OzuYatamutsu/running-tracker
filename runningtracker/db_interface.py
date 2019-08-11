@@ -26,7 +26,7 @@ def _get_db() -> Connection:
     db_needs_initing = not Path(DATABASE_NAME).exists()
     conn = connect(DATABASE_NAME)
     conn.row_factory = _row_factory
-    
+
     if db_needs_initing:
         _init_db(conn)
     return conn
