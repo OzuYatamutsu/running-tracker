@@ -2,7 +2,9 @@ from sqlite3 import connect, Connection
 from pathlib import Path
 SCHEMA_VERSION = 'v1'
 SCHEMA_LOCATION = str(
-    Path('.').parent.parent.joinpath('database', f"schema_{SCHEMA_VERSION}.sql")
+    Path('.').parent.parent.joinpath(
+        'database', f"schema_{SCHEMA_VERSION}.sql"
+    )
 )
 DATABASE_NAME = 'runningtracker.db'
 
