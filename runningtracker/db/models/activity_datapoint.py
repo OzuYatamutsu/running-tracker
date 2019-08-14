@@ -1,3 +1,4 @@
+from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
 from runningtracker.db.models.activity_type import ActivityType
 from runningtracker.db.models.datapoint import Datapoint
 from dataclasses import dataclass
@@ -10,7 +11,7 @@ class ActivityDatapoint(Datapoint):
     Describes an instance of physical activity.
     """
 
-    timestamp: datetime
+    vitals: VitalsDatapoint
     activity_type: ActivityType
     distance_mi: float
     duration_min: int
@@ -21,7 +22,7 @@ class ActivityDatapoint(Datapoint):
     TABLE_NAME = "activity"
 
     COMMIT_SQL = (
-        f"INSERT INTO {TABLE_NAME} (timestamp, activity_type, distance_mi, "
+        f"INSERT INTO {TABLE_NAME} (vitals_id, activity_type, distance_mi, "
         "duration_min, duration_sec, temp_f, notes) VALUES "
         "(?, ?, ?, ?, ?, ?, ?)"
     )
@@ -33,7 +34,7 @@ class ActivityDatapoint(Datapoint):
         """
 
         return (
-            self.timestamp, self.activity_type.value, self.distance_mi,
+            self.activity_type.value, self.distance_mi,
             self.duration_min, self.duration_sec, self.temp_f,
             self.notes
         )

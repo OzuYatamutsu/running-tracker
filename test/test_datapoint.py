@@ -1,6 +1,5 @@
 from runningtracker.db.models.activity_datapoint import ActivityDatapoint
 from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
-from runningtracker.db.models.vo2_datapoint import Vo2Datapoint
 from runningtracker.db.models.activity_type import ActivityType
 from runningtracker.db.db_interface import _init_db
 from unittest import TestCase
@@ -39,17 +38,6 @@ class TestDatapoint(TestCase):
             duration_min=0,
             duration_sec=0,
             temp_f=0.0,
-            notes=""
-        )
-
-        self.commit(datapoint)
-        assert True
-
-    def test_vo2_datapoint_has_valid_sql(self):
-        datapoint = Vo2Datapoint(
-            timestamp=datetime.now(),
-            duration_min=0,
-            duration_sec=0,
             notes=""
         )
 

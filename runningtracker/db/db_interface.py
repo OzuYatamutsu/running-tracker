@@ -4,7 +4,7 @@ from typing import Type, List
 from pathlib import Path
 
 
-SCHEMA_VERSION = 'v1'
+SCHEMA_VERSION = 'v2'
 SCHEMA_LOCATION = str(
     Path('.').parent.parent.joinpath(
         'database', f"schema_{SCHEMA_VERSION}.sql"
@@ -38,8 +38,10 @@ def get_last_n_datapoints(data_type: Type[Datapoint], n=1) -> List[Datapoint]:
         )
 
         return [
-            data_type(**row)
-            for row in cursor.fetchall()
+            data_type(**{
+                key: value for key, value in row.items()
+                if key not in data_type.IGNORE_COLUMNS
+            }) for row in cursor.fetchall()
         ]
 
 

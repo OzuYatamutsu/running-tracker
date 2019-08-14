@@ -3,7 +3,6 @@ from runningtracker.db.db_interface import (
 )
 from runningtracker.db.models.activity_datapoint import ActivityDatapoint
 from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
-from runningtracker.db.models.vo2_datapoint import Vo2Datapoint
 from runningtracker.db.models.activity_type import ActivityType
 from unittest import TestCase
 from datetime import datetime
@@ -48,21 +47,6 @@ class TestDbInterface(TestCase):
         assert type(ActivityDatapoint(
             **cursor.fetchone()
         )) is ActivityDatapoint
-
-    def test_can_commit_vo2_datapoint(self):
-        commit(Vo2Datapoint(
-            timestamp=datetime.now(),
-            duration_min=0,
-            duration_sec=0,
-            notes=""
-        ))
-
-        cursor = _get_db().cursor()
-        cursor.execute("SELECT * FROM vo2")
-
-        assert type(Vo2Datapoint(
-            **cursor.fetchone()
-        )) is Vo2Datapoint
 
     def test_get_last_n_datapoints(self):
         test_datapoints = [
