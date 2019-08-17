@@ -28,6 +28,12 @@ class VitalsDatapoint(Datapoint):
         "(?, ?, ?, ?, ?, ?)"
     )
 
+    def __post_init__(self):
+        if type(self.measured_on) is str:
+            self.measured_on = date.fromisoformat(
+                self.measured_on
+            )
+
     def to_sql_params(self) -> tuple:
         """
         Casts this object into a tuple in the order described above.
