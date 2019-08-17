@@ -4,9 +4,7 @@ from runningtracker.db.db_interface import (
 from .mock.mock_models import MOCK_VITALS_DATAPOINT, MOCK_ACTIVITY_DATAPOINT
 from runningtracker.db.models.activity_datapoint import ActivityDatapoint
 from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
-from runningtracker.db.models.activity_type import ActivityType
 from unittest import TestCase
-from datetime import date
 from os import unlink
 
 
