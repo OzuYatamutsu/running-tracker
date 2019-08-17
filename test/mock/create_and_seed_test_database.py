@@ -21,6 +21,7 @@ def main():
         vitals_datapoint.heart_bpm = randint(80, 90)
 
         # Randomize mock data for activity
+        activity_datapoint.entry_id = i + 1
         activity_datapoint.linked_to_vitals_entry = vitals_datapoint
         activity_datapoint.distance_mi = float(randint(3, 10))
         activity_datapoint.duration_min = randint(30, 60)
