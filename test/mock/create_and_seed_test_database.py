@@ -8,6 +8,7 @@ MOCK_DATAPOINT_COUNT = 100
 def main():
     for i in range(MOCK_DATAPOINT_COUNT):
         vitals_datapoint = MOCK_VITALS_DATAPOINT
+        vitals_datapoint.entry_id = i + 1
         vitals_datapoint.measured_on = (
             date.today() - timedelta(days=MOCK_DATAPOINT_COUNT - i)
         )
