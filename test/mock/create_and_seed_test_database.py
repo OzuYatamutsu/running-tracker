@@ -1,6 +1,5 @@
 from .mock_models import MOCK_ACTIVITY_DATAPOINT, MOCK_VITALS_DATAPOINT
-from runningtracker.db.db_interface import commit, SCHEMA_LOCATION
-from pathlib import Path
+from runningtracker.db.db_interface import commit
 from datetime import date, timedelta
 from random import randint
 MOCK_DATAPOINT_COUNT = 100
@@ -33,6 +32,7 @@ def main():
         commit(vitals_datapoint)
         print(f"Committing mock data: {activity_datapoint}")
         commit(activity_datapoint)
+
 
 if __name__ == '__main__':
     main()
