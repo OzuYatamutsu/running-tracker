@@ -52,8 +52,8 @@ class TestDbInterface(TestCase):
         assert all([type(item) is VitalsDatapoint for item in result])
         for item in result:
             assert type(item) is VitalsDatapoint
-            MOCK_VITALS_DATAPOINT.entry_id == item.entry_id
-            assert item is MOCK_VITALS_DATAPOINT
+            MOCK_VITALS_DATAPOINT.entry_id = item.entry_id
+            assert item == MOCK_VITALS_DATAPOINT
 
     def tearDown(self) -> None:
         try:
