@@ -16,6 +16,11 @@ DROP TABLE vitals;
 ALTER TABLE vitals_migration RENAME TO vitals;
 CREATE INDEX vitals_measured_on_idx ON vitals (measured_on);
 
+INSERT INTO activity_types (name) VALUES
+    ('run-intervals'),
+    ('cross-training'),
+    ('cooper');
+
 CREATE TABLE activity_migration (
     entry_id INTEGER PRIMARY KEY AUTOINCREMENT,
     linked_to_vitals_entry INTEGER NOT NULL,

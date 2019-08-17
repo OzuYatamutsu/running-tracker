@@ -1,6 +1,7 @@
 from runningtracker.db.models.datapoint import Datapoint
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date
+from typing import Union
 
 
 @dataclass
@@ -10,7 +11,9 @@ class VitalsDatapoint(Datapoint):
     a specific time.
     """
 
-    timestamp: datetime
+    # Assigned at insertion.
+    entry_id: Union[int, None]
+    measured_on: date
     weight_lb: float
     bp_systolic: float
     bp_diastolic: float
@@ -20,7 +23,7 @@ class VitalsDatapoint(Datapoint):
     TABLE_NAME = "vitals"
 
     COMMIT_SQL = (
-        f"INSERT INTO {TABLE_NAME} (timestamp, weight_lb, bp_systolic, "
+        f"INSERT INTO {TABLE_NAME} (measured_on, weight_lb, bp_systolic, "
         "bp_diastolic, heart_bpm, notes) VALUES "
         "(?, ?, ?, ?, ?, ?)"
     )
@@ -32,6 +35,6 @@ class VitalsDatapoint(Datapoint):
         """
 
         return (
-            self.timestamp, self.weight_lb, self.bp_systolic,
+            self.measured_on, self.weight_lb, self.bp_systolic,
             self.bp_diastolic, self.heart_bpm, self.notes
         )

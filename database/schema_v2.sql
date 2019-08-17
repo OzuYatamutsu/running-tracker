@@ -17,7 +17,7 @@ CREATE TABLE activity_types (
 -- Seed activity types into table
 INSERT INTO activity_types (name) VALUES
     ('run'),
-    ('run_intervals'),
+    ('run-intervals'),
     ('walk'),
     ('cross-training'),
     ('cooper');
