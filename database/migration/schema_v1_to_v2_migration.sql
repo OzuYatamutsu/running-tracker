@@ -2,7 +2,7 @@ PRAGMA foreign_keys=off;
 
 CREATE TABLE vitals_migration (
     entry_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    timestamp DATETIME NOT NULL DEFAULT (DATETIME('now')),
+    measured_on DATE NOT NULL DEFAULT (DATE('now')),
     weight_lb NUMERIC NOT NULL,
     bp_systolic NUMERIC NOT NULL,
     bp_diastolic NUMERIC NOT NULL,
@@ -14,23 +14,24 @@ INSERT INTO vitals_migration SELECT * FROM vitals;
 DROP TABLE vitals;
 
 ALTER TABLE vitals_migration RENAME TO vitals;
-CREATE INDEX vitals_timestamp_idx ON vitals (timestamp);
+CREATE INDEX vitals_measured_on_idx ON vitals (measured_on);
 
 CREATE TABLE activity_migration (
     entry_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    vitals_id INTEGER NOT NULL,
+    linked_to_vitals_entry INTEGER NOT NULL,
     activity_type TEXT NOT NULL,
     distance_mi NUMERIC NOT NULL,
     duration_min UNSIGNED INTEGER NOT NULL,
     duration_sec UNSIGNED INTEGER NOT NULL,
-    temp_f NUMERIC,
+    feels_like_temp_f NUMERIC,
+    steps_per_min NUMERIC,
     notes TEXT(1024) NOT NULL DEFAULT '',
 
     FOREIGN KEY (activity_type) REFERENCES activity_types(name)
         ON UPDATE RESTRICT
         ON DELETE RESTRICT,
 
-    FOREIGN KEY (vitals_id) REFERENCES vitals(entry_id)
+    FOREIGN KEY (linked_to_vitals_entry) REFERENCES vitals(entry_id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 );
@@ -39,10 +40,8 @@ INSERT INTO activity_migration SELECT * FROM activity;
 DROP TABLE activity;
 
 ALTER TABLE activity_migration RENAME TO activity;
-CREATE INDEX activity_timestamp_idx ON activity (timestamp);
 
 DROP TABLE vo2;
 
 PRAGMA foreign_keys=on;
 COMMIT;
-
