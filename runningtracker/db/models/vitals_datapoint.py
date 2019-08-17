@@ -1,7 +1,7 @@
 from runningtracker.db.models.datapoint import Datapoint
 from dataclasses import dataclass
+from typing import Optional
 from datetime import date
-from typing import Union
 
 
 @dataclass
@@ -12,7 +12,7 @@ class VitalsDatapoint(Datapoint):
     """
 
     # Assigned at insertion.
-    entry_id: Union[int, None]
+    entry_id: Optional[int]
     measured_on: date
     weight_lb: float
     bp_systolic: float
