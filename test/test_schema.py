@@ -1,4 +1,4 @@
-from runningtracker.db.db_interface import _init_db, _get_db, DATABASE_NAME
+from runningtracker.db.db_interface import _init_db, get_db, DATABASE_NAME
 from unittest import TestCase
 from sqlite3 import connect
 from pathlib import Path
@@ -35,7 +35,7 @@ class TestSchema(TestCase):
 
     def test_can_get_valid_db_object_against_latest_schema_version(self):
         try:
-            db = _get_db()
+            db = get_db()
             assert not not db
             assert not not db.cursor().execute("SELECT 'Hello, world'")
         except Exception:

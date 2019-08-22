@@ -1,9 +1,9 @@
+from runningtracker.db.db_interface import get_vitals_datapoint_by_id, get_db
 from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
-from runningtracker.db.db_interface import get_vitals_datapoint_by_id
 from runningtracker.db.models.activity_type import ActivityType
 from runningtracker.db.models.datapoint import Datapoint
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 
 
 @dataclass
@@ -74,3 +74,23 @@ class ActivityDatapoint(Datapoint):
         """
 
         return (60 * self.duration_min) + self.duration_sec
+
+
+def get_last_n_cooper(n=1) -> List[float]:
+    """
+    Returns the last n most recent Cooper test measurements.
+    """
+
+    with get_db() as db:
+        cursor = db.cursor()
+
+        cursor.execute(
+            f"SELECT * FROM {ActivityDatapoint.TABLE_NAME} "
+            f"WHERE activity_type='cooper' OR activity_type='run' "
+            f"AND distance_mi=1.5 "
+            "ORDER BY entry_id DESC LIMIT ?", (n,)
+        )
+
+        return [
+            ActivityDatapoint(**row) for row in cursor.fetchall()
+        ]

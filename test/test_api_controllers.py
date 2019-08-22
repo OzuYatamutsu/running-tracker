@@ -1,7 +1,6 @@
 from .mock.mock_models import (
     MOCK_ACTIVITY_DATAPOINT, MOCK_ACTIVITY_DATAPOINT_CROSS_TRAIN
 )
-from runningtracker.db.models.activity_type import ActivityType
 from runningtracker.api.controllers import cooper_vo2max
 from unittest import TestCase
 

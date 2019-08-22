@@ -19,7 +19,7 @@ def commit(datapoint: Datapoint) -> None:
     Commits a datapoint to the database.
     """
 
-    with _get_db() as db:
+    with get_db() as db:
         db.cursor().execute(
             datapoint.COMMIT_SQL, datapoint.to_sql_params()
         )
@@ -30,7 +30,7 @@ def get_last_n_datapoints(data_type: Type[Datapoint], n=1) -> List[Datapoint]:
     Returns the last n most recent datapoints of the given type.
     """
 
-    with _get_db() as db:
+    with get_db() as db:
         cursor = db.cursor()
 
         cursor.execute(
@@ -49,7 +49,7 @@ def get_vitals_datapoint_by_id(entry_id: int) -> VitalsDatapoint:
     If none were found by the ID, raises ValueError.
     """
 
-    with _get_db() as db:
+    with get_db() as db:
         cursor = db.cursor()
 
         cursor.execute(
@@ -89,7 +89,7 @@ def _row_factory(cursor, row) -> dict:
     return result
 
 
-def _get_db() -> Connection:
+def get_db() -> Connection:
     """
     Returns a db connection object.
     """
