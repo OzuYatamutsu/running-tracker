@@ -1,8 +1,8 @@
 from runningtracker.db.models.activity_datapoint import (
-    ActivityDatapoint, get_last_n_cooper
+    ActivityDatapoint  # , get_last_n_cooper
 )
-from runningtracker.db.db_interface import get_last_n_datapoints
-from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
+# from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
+# from runningtracker.db.db_interface import get_last_n_datapoints
 from runningtracker.db.models.activity_type import ActivityType
 from typing import Tuple
 
@@ -26,8 +26,9 @@ def get_weight_trend(n=5) -> float:
     n measurements (defaults to 5).
     """
 
-    last_n_measurements = get_last_n_datapoints(VitalsDatapoint, n)
+    # last_n_measurements = get_last_n_datapoints(VitalsDatapoint, n)
     pass  # TODO
+    raise NotImplementedError
 
 
 def get_bp_trend(n=5) -> Tuple[float, float]:
@@ -37,8 +38,9 @@ def get_bp_trend(n=5) -> Tuple[float, float]:
     the second value is diastolic change.
     """
 
-    last_n_measurements = get_last_n_datapoints(VitalsDatapoint, n)
+    # last_n_measurements = get_last_n_datapoints(VitalsDatapoint, n)
     pass  # TODO
+    raise NotImplementedError
 
 
 def get_run_pace_trend(n=5) -> float:
@@ -47,8 +49,9 @@ def get_run_pace_trend(n=5) -> float:
     n measurements (defaults to 5).
     """
 
-    last_n_measurements = get_last_n_datapoints(ActivityDatapoint, n)
+    # last_n_measurements = get_last_n_datapoints(ActivityDatapoint, n)
     pass  # TODO
+    raise NotImplementedError
 
 
 def get_vo2_trend(n=5) -> float:
@@ -57,5 +60,6 @@ def get_vo2_trend(n=5) -> float:
     n measurements (defaults to 5).
     """
 
-    last_n_measurements = get_last_n_cooper(n)
+    # last_n_measurements = get_last_n_cooper(n)
     pass  # TODO
+    raise NotImplementedError
