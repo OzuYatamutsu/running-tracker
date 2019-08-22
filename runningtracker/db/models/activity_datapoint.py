@@ -58,3 +58,19 @@ class ActivityDatapoint(Datapoint):
             self.distance_mi, self.duration_min, self.duration_sec,
             self.feels_like_temp_f, self.steps_per_min, self.notes
         )
+
+    def duration_in_min(self) -> float:
+        """
+        Casts the minutes and seconds duration into a
+        total duration in minutes.
+        """
+
+        return self.duration_min + (self.duration_sec / 60)
+
+    def duration_in_sec(self) -> int:
+        """
+        Casts the minutes and seconds duration into a
+        total duration in seconds.
+        """
+
+        return (60 * self.duration_min) + self.duration_sec

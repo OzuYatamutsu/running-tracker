@@ -21,3 +21,10 @@ class TestDatapoint(TestCase):
     def test_activity_datapoint_has_valid_sql(self):
         self.commit(MOCK_ACTIVITY_DATAPOINT)
         assert True
+
+    def test_activity_datapoint_can_cast_to_min(self):
+        assert MOCK_ACTIVITY_DATAPOINT.duration_in_min() >= 10.61
+        assert MOCK_ACTIVITY_DATAPOINT.duration_in_min() <= 10.62
+
+    def test_activity_datapoint_can_cast_to_sec(self):
+        assert MOCK_ACTIVITY_DATAPOINT.duration_in_sec() == 637
