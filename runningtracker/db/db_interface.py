@@ -1,10 +1,11 @@
+from runningtracker.db.models.vitals_datapoint import VitalsDatapoint
 from runningtracker.db.models.datapoint import Datapoint
 from sqlite3 import connect, Connection
 from typing import Type, List
 from pathlib import Path
 
 
-SCHEMA_VERSION = 'v1'
+SCHEMA_VERSION = 'v2'
 SCHEMA_LOCATION = str(
     Path('.').parent.parent.joinpath(
         'database', f"schema_{SCHEMA_VERSION}.sql"
@@ -34,13 +35,34 @@ def get_last_n_datapoints(data_type: Type[Datapoint], n=1) -> List[Datapoint]:
 
         cursor.execute(
             f"SELECT * FROM {data_type.TABLE_NAME} "
-            "ORDER BY timestamp LIMIT ?", (n,)
+            "ORDER BY entry_id DESC LIMIT ?", (n,)
         )
 
         return [
-            data_type(**row)
-            for row in cursor.fetchall()
+            data_type(**row) for row in cursor.fetchall()
         ]
+
+
+def get_vitals_datapoint_by_id(entry_id: int) -> VitalsDatapoint:
+    """
+    Fetches a VitalsDatapoint object from the database.
+    If none were found by the ID, raises ValueError.
+    """
+
+    with _get_db() as db:
+        cursor = db.cursor()
+
+        cursor.execute(
+            f"SELECT * FROM {VitalsDatapoint.TABLE_NAME} "
+            f"WHERE entry_id = ?", (entry_id,)
+        )
+
+        try:
+            return VitalsDatapoint(**cursor.fetchone())
+        except TypeError:
+            raise ValueError(
+                f"Could not find a vitals datapoint with entry_id={entry_id}."
+            )
 
 
 def _init_db(conn: Connection) -> None:

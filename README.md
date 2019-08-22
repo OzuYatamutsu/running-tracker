@@ -21,3 +21,8 @@ FLASK_APP=app.py python -m flask run
 ```
 $env:FLASK_APP='app.py'; python -m flask run
 ```
+
+## Generating mock data
+```
+python -m test.mock.create_and_seed_test_database
+```

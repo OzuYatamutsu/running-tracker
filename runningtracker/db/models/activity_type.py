@@ -8,6 +8,9 @@ class ActivityType(Enum):
 
     WALK = 'walk'
     RUN = 'run'
+    RUN_INTERVALS = 'run-intervals'
+    CROSS_TRAINING = 'cross-training'
+    COOPER = 'cooper'
 
     def __str__(self):
         return self.value
