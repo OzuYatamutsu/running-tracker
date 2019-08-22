@@ -26,3 +26,16 @@ MOCK_ACTIVITY_DATAPOINT = ActivityDatapoint(
     steps_per_min=150,
     notes='mock_entry'
 )
+
+MOCK_ACTIVITY_DATAPOINT_CROSS_TRAIN = ActivityDatapoint(
+    # TODO omit entry_id
+    entry_id=2,
+    linked_to_vitals_entry=MOCK_VITALS_DATAPOINT,
+    activity_type=ActivityType.CROSS_TRAINING,
+    distance_mi=1.5,
+    duration_min=10,
+    duration_sec=37,
+    feels_like_temp_f=93,
+    steps_per_min=150,
+    notes='mock_entry'
+)

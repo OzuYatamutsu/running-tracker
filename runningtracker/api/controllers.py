@@ -9,7 +9,7 @@ def cooper_vo2max(activity: ActivityDatapoint) -> float:
 
     assert activity.distance_mi == 1.5, \
         f"Must use distance of 1.5 miles to calculate vo2max! {activity}"
-    assert activity.activity_type in [ActivityType.RUN, ActivityType.COOPER] \
+    assert activity.activity_type in [ActivityType.RUN, ActivityType.COOPER], \
         f"Must use a run activity to calculate vo2max! {activity}"
 
     return (483 / activity.duration_in_min()) + 3.5
