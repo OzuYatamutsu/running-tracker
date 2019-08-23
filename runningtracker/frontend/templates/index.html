@@ -1,19 +1,13 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
     Hello, world!
 {% endblock %}
 
-{% block navbar %}
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">running-tracker</a>
-    </nav>
-{% endblock %}
-
 {% block content %}
-    {% block row %}
-        <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="px-3 py-3 pb-md-4 mx-auto text-center">
             <h1 class="display-4">Hello, world!</h1>
         </div>
-    {% block row %}
+    </main>
 {% endblock %}

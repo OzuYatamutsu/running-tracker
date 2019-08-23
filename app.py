@@ -4,7 +4,7 @@ from flask import Flask, redirect
 from flask_bootstrap import Bootstrap
 
 # Init app and register child blueprints
-app = Flask(__name__)
+app = Flask(__name__, static_folder=None)
 app.register_blueprint(api)
 app.register_blueprint(frontend)
 Bootstrap(app)
