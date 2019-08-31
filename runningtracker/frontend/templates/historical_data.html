@@ -8,17 +8,13 @@
             </tr>
         </thead>
         <tbody>
-            <!-- TODO: sample data. -->
-            <tr>
-                <td scope="row">08/30/2019</td>
-                <td scope="row">135.4</td>
-                <td scope="row">98/45 mmHg</td>
-            </tr>
-            <tr>
-                <td scope="row">08/31/2019</td>
-                <td scope="row">134.1</td>
-                <td scope="row">91/56 mmHg</td>
-            </tr>
+            {% for datapoint in datapoints %}
+                <tr>
+                    <td scope="row">{{ datapoint['date'] }}</td>
+                    <td scope="row">{{ datapoint['weight'] }}</td>
+                    <td scope="row">{{ datapoint['bp'] }} mmHg</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}
