@@ -1,0 +1,41 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+<canvas id="myChart" style="width: 770px;"></canvas>
+<script>
+    /* Populate chart data */
+    let myChart = new Chart(
+        document.getElementById('myChart'), {
+            'type': 'line',
+            'data': {
+                'labels': [{% for date in chart_legend %}
+                    '{{ date }}',
+                {% endfor %}],
+                'datasets': [{
+                    'label': 'weight',
+                    'data': [{% for weight in chart_weight_datapoints %}
+                        {{ weight }},
+                    {% endfor %}],
+                    'fill': false,
+                    'backgroundColor': 'blue',
+                    'borderColor': 'blue'
+                }, {
+                    'label': 'bp_systolic',
+                    'data': [{% for bp_systolic in chart_bp_systolic_datapoints %}
+                        {{ bp_systolic }},
+                    {% endfor %}],
+                    'fill': false,
+                    'backgroundColor': 'red',
+                    'borderColor': 'red'
+                }, {
+                    'label': 'bp_diastolic',
+                    'data': [{% for bp_diastolic in chart_bp_diastolic_datapoints %}
+                        {{ bp_diastolic }},
+                    {% endfor %}],
+                    'fill': false,
+                    'backgroundColor': 'orange',
+                    'borderColor': 'orange'
+                }]
+            }
+        }
+    );
+</script>

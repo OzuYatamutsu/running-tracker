@@ -4,7 +4,8 @@
             <tr>
                 <th scope="col">date</th>
                 <th scope="col">weight (lb)</th>
-                <th scope="col">bp (sys/dia)</th>
+                <th scope="col">bp_systolic (mmHg)</th>
+                <th scope="col">bp_diastolic (mmHg)</th>
             </tr>
         </thead>
         <tbody>
@@ -12,7 +13,8 @@
                 <tr>
                     <td scope="row">{{ datapoint['date'] }}</td>
                     <td scope="row">{{ datapoint['weight'] }}</td>
-                    <td scope="row">{{ datapoint['bp'] }} mmHg</td>
+                    <td scope="row">{{ datapoint['bp_systolic'] }}</td>
+                    <td scope="row">{{ datapoint['bp_diastolic'] }}</td>
                 </tr>
             {% endfor %}
         </tbody>
