@@ -2,6 +2,16 @@ from datetime import date
 
 
 MOCK_HISTORICAL_DATA = sorted([{
+    'date': date.fromisoformat('2019-08-28'),
+    'weight': 134.2,
+    'bp_systolic': 116,
+    'bp_diastolic': 48
+}, {
+    'date': date.fromisoformat('2019-08-29'),
+    'weight': 134.0,
+    'bp_systolic': 112,
+    'bp_diastolic': 51
+}, {
     'date': date.fromisoformat('2019-08-30'),
     'weight': 135.4,
     'bp_systolic': 98,
