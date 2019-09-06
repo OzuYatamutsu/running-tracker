@@ -11,11 +11,12 @@ Fields:
 activity_id: integer primary key autoincrement
 vitals_id: primary key of vitals table - Foreign Key here
 activity type: primary key of activity_types table - Foreign Key here 
-distance_mi: numeric or ''
+distance_mi: numeric or '' - distance in miles
 duration_min: integer or ''
 duration_sec: integer or ''
-feels_like_temp_f: integer or '' - heat index at time of activity - usually several degrees hotter than outside temperature
+pace_mi: numeric or '' - pace per mile
 steps_per_min: integer or '' - cadence value for run or walk activity
+feels_like_temp_f: integer or '' - heat index at time of activity - usually several degrees hotter than outside temperature
 weights: "Y" or '' - usual schedule is 3x per week 
 core: "Y" or '' - daily schedule - situps, bridge, vacuum
 wrist: "Y" or '' - daily schedule - squeeze blood pressure grips - 100x
